@@ -4,6 +4,8 @@ permutations
 . You can return the answer in any order.
 """
 
+import copy
+
 class Solution(object):
     def permute(self, nums):
         """
