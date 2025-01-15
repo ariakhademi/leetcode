@@ -12,9 +12,9 @@ class Solution(object):
             if target == nums[middle]:
                 return middle # found
             elif target > nums[middle]:
-                left = middle + 1 # narrow down to left
+                left = middle + 1 # narrow down to right
             else:
-                right = middle - 1 # narrow down to right
+                right = middle - 1 # narrow down to left
         
         # if target is not in list
         return left
