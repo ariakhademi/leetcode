@@ -5,35 +5,19 @@ return the length of the longest consecutive elements sequence.
 You must write an algorithm that runs in O(n) time.
 """
 
-class Solution(object):
-    def longestConsecutive(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        out = []
-        i = 0
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        my_set = set(nums)
+        max_length = 0
 
-        if not nums:
-            return 0
+        for num in my_set:
+            seq_length = 1
+            if (num - 1) not in my_set:
+                current_num = num
+                while (current_num + 1) in my_set:
+                    seq_length += 1
+                    current_num += 1
 
-        if len(nums) == 1:
-            return 1
+                max_length = max(max_length,seq_length)
 
-        if all(x == nums[0] for x in nums):
-            return 1
-
-        while i < len(nums):
-            if (nums[i] + 1) in nums:
-                out.append(nums[i])
-                i = nums.index(nums[i] + 1)
-            elif len(out) > 0:
-                out.append(nums[i])
-                break
-            elif not out:
-                i += 1
-            else: 
-                break
-        
-        return len(out)
-        
+        return max_length
