@@ -3,28 +3,20 @@ Given an array of strings strs, group the
 anagrams together. You can return the answer in any order.
 """
 
-class Solution(object):
-    def groupAnagrams(self, strs):
-        """
-        :type strs: List[str]
-        :rtype: List[List[str]]
-        """
-        word_dict = {word: set(word) for word in strs}
-        out = []
-        group = []
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        my_dictionary = {}
 
         if not strs:
-            print('empty input')
-            return False
+            return [0]
 
+        # key idea is sorting
         for word in strs:
-            if not group:
-                group.append(word)
+            sorted_word = ''.join(sorted(word))
+            print(sorted_word)
+            if sorted_word not in my_dictionary:
+                my_dictionary[sorted_word] = [word]
             else:
-                for key, value in word_dict.items():
-                    if word_dict.get(word) == value and key not in group:
-                        group.append(key)
-                out.append(group)
-                group = []
-        
-        return out
+                my_dictionary[sorted_word].append(word)
+
+        return list(my_dictionary.values())
