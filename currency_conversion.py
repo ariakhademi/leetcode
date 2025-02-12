@@ -29,7 +29,10 @@ def find_conversion_rate(rates, query):
         graph[src].append((dest, rate))
         graph[dest].append((src, 1 / rate))  # Add reverse conversion
 
-    return graph
+    # Step 2: BFS to find conversion rate
+    from_currency, to_currency = query[0], query[1]
+
+    return from_currency, to_currency
 
 # Example Usage
 rates = [
